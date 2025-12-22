@@ -28,7 +28,6 @@ try {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.text();
-    console.log("query from file "+url)
     const res = await pg.exec(data)
     console.log(res);
 } catch (error) {
