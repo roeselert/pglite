@@ -24,7 +24,7 @@ console.log("load file");
 
 try {
   const url = 'https://roeselert.github.io/pglite/user.sql'
-  const response = await fetch();
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
