@@ -20,11 +20,17 @@
 
 console.log("Ready!");
 
-console.log("load file");
+// Determine SQL file from URL parameter (supports ?file= or ?sql=). Default: user.sql
+const params = new URLSearchParams(window.location.search);
+const fileParam = params.get('file') || 'user.sql';
 
+// If the param looks like a full URL, use it. Otherwise resolve relative to current page.
+const sqlUrl = new URL(fileParam, window.location.href.split('?')[0]).href;
+
+console.log("Loading SQL from:", sqlUrl);
 try {
   const url = 'https://roeselert.github.io/pglite/user.sql'
-  const response = await fetch(url);
+  const response = await fetch(sqlUrl);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
