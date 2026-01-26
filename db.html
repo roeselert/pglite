@@ -17,7 +17,6 @@
   }
 </style>
 
-
 <script type="module">
   import { PGlite } from 'https://cdn.jsdelivr.net/npm/@electric-sql/pglite/dist/index.js'
 
@@ -27,27 +26,19 @@
   // Retrieve the Repl element
   const repl = document.getElementById('repl')
 
-  repl.history = [
-  "CREATE TABLE test (id serial primary key, name text);",
-  "INSERT INTO test (name) VALUES ('Alice');"
-];
-
-  
   // REPL to your PGlite instance
   repl.pg = pg
 
 console.log("Ready!");
 
-// Determine SQL file from URL parameter (supports ?file= or ?sql=). Default: user.sql
-const params = new URLSearchParams(window.location.search);
-const fileParam = params.get('file') || 'user.sql';
+const fileParam = 'user.sql';
 
 // If the param looks like a full URL, use it. Otherwise resolve relative to current page.
 const sqlUrl = new URL(fileParam, window.location.href.split('?')[0]).href;
 
 console.log("Loading SQL from:", sqlUrl);
 try {
-  const url = 'https://roeselert.github.io/pglite/user.sql'
+
   const response = await fetch(sqlUrl);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -60,3 +51,35 @@ try {
 }
   
 </script>
+
+<script>
+  const upEvent = new KeyboardEvent('keydown', {
+    key: 'ArrowUp',
+    code: 'ArrowUp',
+    keyCode: 38,
+    which: 38,
+    bubbles: true
+  });
+  
+ 
+  function sendKey(seq) {
+    const element = document.querySelector('#repl').shadowRoot.querySelectorAll('.cm-line')
+    element[0].dispatchEvent(upEvent)
+  }
+</script>
+
+<div style="
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:14px;
+  max-width:260px;
+">
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\t')">Tab</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[A')">↑</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('x')">x</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[D')">←</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[B')">↓</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[C')">→</button>
+</div> 
+
