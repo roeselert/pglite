@@ -53,18 +53,66 @@ try {
 </script>
 
 <script>
-  const upEvent = new KeyboardEvent('keydown', {
-    key: 'ArrowUp',
-    code: 'ArrowUp',
-    keyCode: 38,
-    which: 38,
-    bubbles: true
-  });
+ // Arrow Up
+const upEvent = new KeyboardEvent('keydown', {
+  key: 'ArrowUp',
+  code: 'ArrowUp',
+  keyCode: 38,
+  which: 38,
+  bubbles: true
+});
+
+// Arrow Down
+const downEvent = new KeyboardEvent('keydown', {
+  key: 'ArrowDown',
+  code: 'ArrowDown',
+  keyCode: 40,
+  which: 40,
+  bubbles: true
+});
+
+// Arrow Left
+const leftEvent = new KeyboardEvent('keydown', {
+  key: 'ArrowLeft',
+  code: 'ArrowLeft',
+  keyCode: 37,
+  which: 37,
+  bubbles: true
+});
+
+// Arrow Right
+const rightEvent = new KeyboardEvent('keydown', {
+  key: 'ArrowRight',
+  code: 'ArrowRight',
+  keyCode: 39,
+  which: 39,
+  bubbles: true
+});
+
+// Tab
+const tabEvent = new KeyboardEvent('keydown', {
+  key: 'Tab',
+  code: 'Tab',
+  keyCode: 9,
+  which: 9,
+  bubbles: true
+});
+
+// Ctrl+V
+const pasteEvent = new KeyboardEvent('keydown', {
+  key: 'v',
+  code: 'KeyV',
+  keyCode: 86,
+  which: 86,
+  ctrlKey: true,
+  bubbles: true
+});
+
   
  
-  function sendKey(seq) {
+  function sendKey(event) {
     const element = document.querySelector('#repl').shadowRoot.querySelectorAll('.cm-line')
-    element[0].dispatchEvent(upEvent)
+    element[0].dispatchEvent(event)
   }
 </script>
 
@@ -75,11 +123,11 @@ try {
   margin-bottom:14px;
   max-width:260px;
 ">
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\t')">Tab</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[A')">↑</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('x')">x</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[D')">←</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[B')">↓</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey('\x1b[C')">→</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(tabEvent)">Tab</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(upEvent)">↑</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(pasteEvent)">c+v</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(leftEvent)">←</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(downEvent)">↓</button>
+  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(rightEvent)">→</button>
 </div> 
 
