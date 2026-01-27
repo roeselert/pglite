@@ -70,45 +70,6 @@ const downEvent = new KeyboardEvent('keydown', {
   which: 40,
   bubbles: true
 });
-
-// Arrow Left
-const leftEvent = new KeyboardEvent('keydown', {
-  key: 'ArrowLeft',
-  code: 'ArrowLeft',
-  keyCode: 37,
-  which: 37,
-  bubbles: true
-});
-
-// Arrow Right
-const rightEvent = new KeyboardEvent('keydown', {
-  key: 'ArrowRight',
-  code: 'ArrowRight',
-  keyCode: 39,
-  which: 39,
-  bubbles: true
-});
-
-// Tab
-const tabEvent = new KeyboardEvent('keydown', {
-  key: 'Tab',
-  code: 'Tab',
-  keyCode: 9,
-  which: 9,
-  bubbles: true
-});
-
-// Ctrl+V
-const pasteEvent = new KeyboardEvent('keydown', {
-  key: 'v',
-  code: 'KeyV',
-  keyCode: 86,
-  which: 86,
-  ctrlKey: true,
-  bubbles: true
-});
-
-  
  
   function sendKey(event) {
     const element = document.querySelector('#repl').shadowRoot.querySelectorAll('.cm-line')
@@ -123,11 +84,7 @@ const pasteEvent = new KeyboardEvent('keydown', {
   margin-bottom:14px;
   max-width:260px;
 ">
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(tabEvent)">Tab</button>
   <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(upEvent)">↑</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(pasteEvent)">c+v</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(leftEvent)">←</button>
   <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(downEvent)">↓</button>
-  <button style="font-size:22px; padding:14px 22px;" onclick="sendKey(rightEvent)">→</button>
 </div> 
 
